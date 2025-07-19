@@ -24,12 +24,12 @@
   "personalization": {
     "tag": "# 个性化",
     "title": "插件 & 主题\n极致的自定义",
-    "content": "在 Class Widgets 中，提供了基于 Python 的插件系统和插件广场；你可以在插件广场中安装您需要的插件。以及彰显个性的主题系统，让你搭建出独一无二的 Class Widgets。"
+    "content": "在 Class Widgets 中，提供了基于 Python 的插件系统和插件广场；你可以在插件广场中安装您需要的插件。还有彰显个性的主题系统，让你搭建出独一无二的 Class Widgets。"
   },
   "compatibility": {
     "tag": "# 多端支持",
     "title": "近乎完美的\n兼容性",
-    "content": "Class Widgets 基于 PyQt 构建，为 Windows、Linux、MacOS 三大主流操作系统提供支持"
+    "content": "Class Widgets 基于 PyQt 构建，为 Windows、macOS、Linux 三大主流操作系统提供支持。"
   },
   "misc": {
     "notification": {
@@ -40,28 +40,28 @@
     "floating": {
       "tag": "浮窗",
       "title": "全新的隐藏方式",
-      "content": "全新隐藏方式——浮窗，能够让 Class Widgets 的重要信息浓缩为一块浮动的窗口，更轻巧便捷。尽量减小其对教学工作的干扰。"
+      "content": "全新隐藏方式——浮窗，能够让 Class Widgets 的重要信息浓缩为一块浮动的窗口，更轻巧便捷，尽量减小其对教学工作的干扰。"
     },
     "design": {
       "tag": "设计",
       "title": "极致的设计语言",
-      "content": "Class Widgets 采用了由微软推出的 Fluent Design 设计语言，使界面更加简洁、舒适和流畅，且使用了 QFluentWidgets UI库。"
+      "content": "Class Widgets 采用了由微软推出的 Fluent Design 设计语言，且使用了 QFluentWidgets UI库，这让界面更加简洁、舒适和流畅。"
     }
   },
   "download": {
     "page_title": "下载",
     "title": "下载Class Widgets",
-    "description": "下载 Class Widgets 应用程序以在您的设备上使用。我们提供了适用于 macOS、Windows 和 Linux 的版本，确保您可以在任何平台上享受我们的软件。",
+    "description": "下载 Class Widgets 应用程序以在您的设备上使用。我们提供了适用于 Windows、macOS 和 Linux 的版本，确保您可以在任何平台上享受我们的软件。\n如果您需要使用或体验本软件的一些新特性，请前往本项目 Github 仓库的 <div v-html=\"linkHtml\"><a href=\\\"https://github.com/Class-Widgets/Class-Widgets/actions\\\" style=\\\"color: #007bff;\\\">Actions</a></div> 页面下载最新构建。\n您会得到一个压缩文件，请解压到合适位置后，打开“ClassWidgets.exe”。您可以通过托盘菜单进入设置或退出此程序。",
     "use_proxy": "使用代理下载 (如果直接下载速度慢，请勾选此项)",
     "loading": "正在加载最新版本信息...",
     "download_button": "下载",
     "macos": {
       "title": "MacOS下载",
-      "description": "支持 Apple Silicon 和 Intel 处理器。"
+      "description": "支持 Apple Silicon 和 Intel 处理器"
     },
     "windows": {
       "title": "Windows下载",
-      "description": "支持 Windows7 及以上版本。\n提供 x64 和 x86 版本。"
+      "description": "支持 Windows7 及以上版本\n提供 x64 和 x86 版本"
     },
     "linux": {
       "title": "Linux下载",
