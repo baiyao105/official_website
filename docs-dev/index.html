@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Redirecting...</title>
+  <script>
+    (function() {
+      const availableLanguages = ["en","ja","zh"];
+      const fallbackLang = "zh";
+      
+      function detectLanguage(availableLanguages, fallbackLang) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        if (langParam && availableLanguages.includes(langParam)) return langParam;
+
+        const cookies = {};
+        if (document.cookie) {
+          document.cookie.split(';').forEach(cookie => {
+            const parts = cookie.trim().split('=');
+            if (parts.length === 2) cookies[parts[0]] = decodeURIComponent(parts[1]);
+          });
+        }
+        const cookieLang = cookies.lang;
+        if (cookieLang && availableLanguages.includes(cookieLang)) return cookieLang;
+
+        const browserLangs = navigator.languages || [navigator.language];
+        for (const browserLang of browserLangs) {
+          const lang = browserLang.split('-')[0].toLowerCase();
+          if (availableLanguages.includes(lang)) return lang;
+        }
+        return fallbackLang;
+      }
+    
+      const detectedLang = detectLanguage(availableLanguages, fallbackLang);
+      const pathName = window.location.pathname;
+      const search = window.location.search;
+      document.cookie = `lang=${detectedLang}; path=/; max-age=31536000; samesite=lax`;
+      const targetPath = '/' + detectedLang + (pathName === '/' ? '' : pathName);
+      const redirectUrl = targetPath + search;
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to your preferred language...</p>
+</body>
+</html>
