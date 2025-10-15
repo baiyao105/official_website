@@ -69,7 +69,7 @@
     },
     "footer": {
       "help": "ヘルプが必要ですか？当社の <a href=\"https://github.com/Class-Widgets/Class-Widgets\" style=\"color: #007bff;\">Github</a> をご覧になるか、<a href=\"https://github.com/orgs/Class-Widgets/discussions\" style=\"color: #007bff;\">コミュニティ</a> に参加してください",
-      "security": "すべてのダウンロードはデジタル署名とセキュリティ検証を通過しています"
+      "security": "すべてのダウンロードはセキュリティ検証を通過しています"
     }
   },
   "version": {
