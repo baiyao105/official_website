@@ -1,4 +1,4 @@
-name: update-version.yml
+name: Update Class Widgets 2 Releases JSON
 on:
   workflow_dispatch:
   repository_dispatch:
