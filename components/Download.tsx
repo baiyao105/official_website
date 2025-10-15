@@ -130,7 +130,7 @@ const Download = ({ translations }: { translations: Translations }) => {
       } catch (error) {
         console.error("获取releases失败:", error);
         // 失败时使用默认版本号和空日期
-        setLatestVer('v1.1.7.1');
+        setLatestVer('v1.2.0.1');
         setPublishedDate(null);
         setPrereleaseVer(null);
       } finally {
