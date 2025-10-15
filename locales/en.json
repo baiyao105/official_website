@@ -75,6 +75,7 @@
   "version": {
     "loading": "Fetching latest version information...",
     "latest": "Latest Version",
+    "pre_release": "Pre-release Version",
     "published": "Published Date"
   },
   "vercard": {

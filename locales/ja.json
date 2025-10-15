@@ -75,6 +75,7 @@
   "version": {
     "loading": "最新バージョン情報を取得中...",
     "latest": "最新バージョン",
+    "pre_release": "プレリリース版",
     "published": "公開日"
   },
   "vercard": {
