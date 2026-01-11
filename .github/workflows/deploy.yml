@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows:
+      - Update Class Widgets 2 Releases JSON
+    types:
+      - completed
+      
 permissions:
   contents: write  # 允许写入仓库内容（如 git push、创建 release 等）
 jobs:
