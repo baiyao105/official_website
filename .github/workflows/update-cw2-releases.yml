@@ -22,25 +22,41 @@ jobs:
 
       - name: Fetch latest release and alpha version of Class Widgets 2
         id: fetch_versions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           REPO_OWNER="RinLit-233-shiroko"
           REPO_NAME="Class-Widgets-2"
           API_URL="https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases"
 
-          # 获取正式版（release）
-          VERSION_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].tag_name')
-          URL_RELEASE=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == false)][0].assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
+          # 1. 一次性获取所有 Release 数据，并带上 Token 避免频率限制
+          RESPONSE=$(curl -s -H "Authorization: token $GH_TOKEN" "$API_URL")
 
-          # 获取测试版（alpha）
-          VERSION_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].tag_name')
-          URL_ALPHA=$(curl -s "$API_URL" | jq -r '[.[] | select(.prerelease == true)][0].assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
+          # 检查响应是否为有效数组
+          if ! echo "$RESPONSE" | jq -e 'if type == "array" then . else empty end' > /dev/null; then
+            echo "Error: API returned invalid data or error message."
+            echo "$RESPONSE"
+            exit 1
+          fi
 
-          # 如果 release 没有就用 alpha 的版本和链接
+          # 2. 从响应中提取数据 (使用 jq 的 map 过滤)
+          # 正式版
+          RELEASE_DATA=$(echo "$RESPONSE" | jq -c '[.[] | select(.prerelease == false)][0]')
+          VERSION_RELEASE=$(echo "$RELEASE_DATA" | jq -r '.tag_name // ""')
+          URL_RELEASE=$(echo "$RELEASE_DATA" | jq -r '.assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
+
+          # 测试版
+          ALPHA_DATA=$(echo "$RESPONSE" | jq -c '[.[] | select(.prerelease == true)][0]')
+          VERSION_ALPHA=$(echo "$ALPHA_DATA" | jq -r '.tag_name // ""')
+          URL_ALPHA=$(echo "$ALPHA_DATA" | jq -r '.assets[] | select(.name | test("Windows")) | .browser_download_url' | head -n 1)
+
+          # 3. 兜底逻辑
           if [ -z "$VERSION_RELEASE" ] || [ "$VERSION_RELEASE" = "null" ]; then
             VERSION_RELEASE="$VERSION_ALPHA"
             URL_RELEASE="$URL_ALPHA"
           fi
 
+          # 4. 写入环境变量
           echo "VERSION_RELEASE=$VERSION_RELEASE" >> $GITHUB_ENV
           echo "URL_RELEASE=$URL_RELEASE" >> $GITHUB_ENV
           echo "VERSION_ALPHA=$VERSION_ALPHA" >> $GITHUB_ENV
